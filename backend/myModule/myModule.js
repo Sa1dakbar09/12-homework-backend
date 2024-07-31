@@ -69,6 +69,7 @@ function uptadeEm(req, res, id, what) {
             products[producIndex].img = img ? img : products.img;
 
             writer_files(what, products);
+            Headers(res)
             res.end(JSON.stringify([
                 "products is updated"
             ]))
