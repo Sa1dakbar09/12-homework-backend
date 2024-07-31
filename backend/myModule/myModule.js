@@ -12,7 +12,9 @@ function createEm(req, res, what) {
         const data = JSON.parse(chunk);
         const list = reader_files(what);
         list.push({
-            id: v4(), ...data
+            id: v4(),
+            isSell: "false",
+            ...data
         })
         writer_files(what, list);
         Headers(res);
@@ -62,11 +64,11 @@ function uptadeEm(req, res, id, what) {
                 `There is no such ${what}`
             ]))
         } else {
-            products[producIndex].name = name ? name : products.name;
-            products[producIndex].title = title ? title : products.title;
-            products[producIndex].price = price ? price : products.price;
-            products[producIndex].isSell = isSell ? isSell : products.isSell;
-            products[producIndex].img = img ? img : products.img;
+            products[producIndex].name = name != null ? name : products[producIndex].name;
+            products[producIndex].title = title != null ? title : products[producIndex].title;
+            products[producIndex].price = price != null ? price : products[producIndex].price;
+            products[producIndex].isSell = isSell != null ? isSell : products[producIndex].isSell;
+            products[producIndex].img = img != null ? img : products[producIndex].img;
 
             writer_files(what, products);
             Headers(res)
@@ -77,4 +79,4 @@ function uptadeEm(req, res, id, what) {
     })
 }
 
-module.exports = { getEm, createEm, deleteEM, anyFindIndex, uptadeEm }
+module.exports = { getEm, createEm, deleteEM, anyFindIndex, uptadeEm, Headers }

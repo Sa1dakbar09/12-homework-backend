@@ -16,7 +16,7 @@ function Headers(res) {
 function writer_files(fileName, data) {
     fileName.trim();
     fileName.toLowerCase();
-    fs.writeFileSync(`./base/` + fileName + '.json', JSON.stringify(data))
+    fs.writeFileSync(`./base/` + fileName + '.json', JSON.stringify(data, null, 4))
 }
 
 
